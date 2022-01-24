@@ -122,12 +122,12 @@ class Cash {
 }
 
 //Initialize 6 variables of type Cash
-var cashVar1 = Cash(-10)      //random negative value
+var cashVar1 = Cash(amountMoney : -10)      //random negative value
 var cashVar2 = Cash()         //zero
-var cashVar3 = Cash(24.19)    //random number in range 0<x<=100
-var cashVar4 = Cash(42.40)    //  ||
-var cashVar5 = Cash(69.76)    //  ||
-var cashVar6 = Cash(82.31)    //  ||
+var cashVar3 = Cash(amountMoney : 24.19)    //random number in range 0<x<=100
+var cashVar4 = Cash(amountMoney : 42.40)    //  ||
+var cashVar5 = Cash(amountMoney : 69.76)    //  ||
+var cashVar6 = Cash(amountMoney : 82.31)    //  ||
 
 //print values from getter for 6 variables
 print(cashVar1.amountMoney)
