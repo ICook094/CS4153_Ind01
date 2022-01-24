@@ -1,0 +1,163 @@
+import UIKit
+
+var str = "Hello World"
+
+class Cash {
+    //dollars and cents
+    var amountMoney: Double {
+        get {
+            //returns: the minimum number of US Currancy that equals the amount stored in amountMoney if amount is negative return empty array (error)
+            //int array of length 9 (starting at index 0)
+                //index 0 -> # $50 bills
+                //index 1 -> # $20 bills
+                //index 2 -> # $10 bills
+                //index 3 -> # $5  bills
+                //index 4 -> # $1  bills
+                //index 5 -> # 25cent coins
+                //index 6 -> # 10cent coins
+                //index 7 -> # 5cent  coins
+                //index 8 -> # 1cent  coins
+            
+            //initialize currancy int array to all 0's
+            var currancy: Array<Int> = Array(repeating: 0, count: 9)
+            //initialize a local amount of amountMoney we can mess with
+            var moneyLeft = self.amountMoney
+            
+            //set values of array if amountMoney is not negative or 0
+            if !self.amountMoney.isLessThanOrEqualTo(0) {
+                //$50 bills - set the index 0 and subtract used amount from moneyLeft
+                while !moneyLeft.isLess(than: 50) {
+                    currancy[0] += 1
+                    moneyLeft -= 50
+                }
+                //$20 bills - set index 1 and subtract used amount from moneyLeft
+                while !moneyLeft.isLess(than: 50) {
+                    currancy[1] += 1
+                    moneyLeft -= 20
+                }
+                //$10 bills - set the index 0 and subtract used amount from moneyLeft
+                while !moneyLeft.isLess(than: 50) {
+                    currancy[2] += 1
+                    moneyLeft -= 10
+                }
+                //$5 bills - set index 1 and subtract used amount from moneyLeft
+                while !moneyLeft.isLess(than: 50) {
+                    currancy[3] += 1
+                    moneyLeft -= 5
+                }
+                //$1 bills - set the index 0 and subtract used amount from moneyLeft
+                while !moneyLeft.isLess(than: 50) {
+                    currancy[4] += 1
+                    moneyLeft -= 1
+                }
+                //25c coins - set index 1 and subtract used amount from moneyLeft
+                while !moneyLeft.isLess(than: 50) {
+                    currancy[5] += 1
+                    moneyLeft -= 0.25
+                }
+                //10c coins - set the index 0 and subtract used amount from moneyLeft
+                while !moneyLeft.isLess(than: 50) {
+                    currancy[6] += 1
+                    moneyLeft -= 0.10
+                }
+                //5c coins - set index 1 and subtract used amount from moneyLeft
+                while !moneyLeft.isLess(than: 50) {
+                    currancy[7] += 1
+                    moneyLeft -= 0.05
+                }
+                //1c coins - set the index 0 and subtract used amount from moneyLeft
+                while !moneyLeft.isLess(than: 50) {
+                    currancy[8] += 1
+                    moneyLeft -= 0.01
+                }
+                
+            }
+            
+            return currancy
+        }
+        
+        set (currancy: Array<Int>) {
+            //takes array of length 9 and converts it to a dollar value and stores the value in amountMoney
+            //if array length != to 9 amountMoney is set to -1 (Error)
+            if currancy.count != 9 {
+                this.amountMoney = -1
+                break;
+            }
+            
+            //initialize double to hold the monitary value of the array passed in
+            var arraysMonitaryValue : Double
+            
+            //Index 0 : add $50 * number held to arraysMonitaryValue
+            arraysMonitaryValue = 50 * currancy[0]
+            //Index 1 : add $20 * number held to arraysMonitaryValue
+            arraysMonitaryValue += 20 * currancy[1]
+            //Index 2 : add $10 * number held to arraysMonitaryValue
+            arraysMonitaryValue += 10 * currancy[2]
+            //Index 3 : add $5 * number held to arraysMonitaryValue
+            arraysMonitaryValue += 5 * currancy[3]
+            //Index 4 : add $1 * number held to arraysMonitaryValue
+            arraysMonitaryValue += 1 * currancy[4]
+            //Index 5 : add 25c * number held to arraysMonitaryValue
+            arraysMonitaryValue += 0.25 * currancy[5]
+            //Index 6 : add 10c * number held to arraysMonitaryValue
+            arraysMonitaryValue += 0.10 * currancy[6]
+            //Index 7 : add 5c * number held to arraysMonitaryValue
+            arraysMonitaryValue += 0.05 * currancy[7]
+            //Index 8 : add 1c * number held to arraysMonitaryValue
+            arraysMonitaryValue += 0.01 * currancy[8]
+            
+            //set this objects value of amountMoney to arraysMonitaryValue
+            this.amountMoney = arraysMonitaryValue
+            
+        }
+    }
+    
+    
+    init(amountMoney: Double){
+        self.amountMoney = amountMoney
+    }
+    init () {
+        self.amountMoney = 0
+    }
+}
+
+//Initialize 6 variables of type Cash
+var cashVar1 = Cash(-10)      //random negative value
+var cashVar2 = Cash()         //zero
+var cashVar3 = Cash(24.19)    //random number in range 0<x<=100
+var cashVar4 = Cash(42.40)    //  ||
+var cashVar5 = Cash(69.76)    //  ||
+var cashVar6 = Cash(82.31)    //  ||
+
+//print values from getter for 6 variables
+print(cashVar1.amountMoney)
+print(cashVar2.amountMoney)
+print(cashVar3.amountMoney)
+print(cashVar4.amountMoney)
+print(cashVar5.amountMoney)
+print(cashVar6.amountMoney)
+
+//Initialize 6 Int array variables
+var arr1:[Int] = [6, 11, 56, 0, 75]                     //length 5
+var arr2:[Int] = [13, 31, 14, 57, 46, 100, 14, 26, 69]  //length 9 and contains vales in range of 0 <= x <= 100
+var arr3:[Int] = [62, 8, 61, 77, 5, 52, 15, 93, 78]     //  ||
+var arr4:[Int] = [12, 30, 66, 45, 16, 13, 95, 26, 61]   //  ||
+var arr5:[Int] = [23, 77, 16, 71, 7, 71, 63, 8, 1]      //  ||
+var arr6:[Int] = [15, 10, 12, 0, 10, 9, 0, 12, 8]       //  ||
+
+//Using setter assign array variables to the 6 cash variables
+cashVar1.amountMoney = arr1
+cashVar2.amountMoney = arr2
+cashVar3.amountMoney = arr3
+cashVar4.amountMoney = arr4
+cashVar5.amountMoney = arr5
+cashVar6.amountMoney = arr6
+
+//print values from getter for 6 variables
+print(cashVar1.amountMoney)
+print(cashVar2.amountMoney)
+print(cashVar3.amountMoney)
+print(cashVar4.amountMoney)
+print(cashVar5.amountMoney)
+print(cashVar6.amountMoney)
+
