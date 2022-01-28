@@ -3,8 +3,17 @@ import UIKit
 var str = "Hello World"
 
 class Cash {
-    //dollars and cents
-    var amountMoney: Double {
+    //dollars and cents stored as a Double
+    var amountMoney : Double {
+        get {
+            return self.amountMoney
+        }
+        set (newMoneyValue){
+            self.amountMoney = newMoneyValue
+        }
+    }
+    //dollars and cents stored as a int array
+    var currencyAmount : Array<Int>{
         get {
             //returns: the minimum number of US Currancy that equals the amount stored in amountMoney if amount is negative return empty array (error)
             //int array of length 9 (starting at index 0)
@@ -75,40 +84,38 @@ class Cash {
             
             return currancy
         }
-        
-        set (currancy: Array<Int>) {
+        set (currancy) {
             //takes array of length 9 and converts it to a dollar value and stores the value in amountMoney
             //if array length != to 9 amountMoney is set to -1 (Error)
             if currancy.count != 9 {
-                this.amountMoney = -1
-                break;
+                self.amountMoney = -1
+            } else {
+                
+                //initialize double to hold the monitary value of the array passed in
+                var arraysMonitaryValue : Double
+                
+                //Index 0 : add $50 * number held to arraysMonitaryValue
+                arraysMonitaryValue = Double(50 * currancy[0])
+                //Index 1 : add $20 * number held to arraysMonitaryValue
+                arraysMonitaryValue += Double(20 * currancy[1])
+                //Index 2 : add $10 * number held to arraysMonitaryValue
+                arraysMonitaryValue += Double(10 * currancy[2])
+                //Index 3 : add $5 * number held to arraysMonitaryValue
+                arraysMonitaryValue += Double(5 * currancy[3])
+                //Index 4 : add $1 * number held to arraysMonitaryValue
+                arraysMonitaryValue += Double(1 * currancy[4])
+                //Index 5 : add 25c * number held to arraysMonitaryValue
+                arraysMonitaryValue += 0.25 * Double(currancy[5])
+                //Index 6 : add 10c * number held to arraysMonitaryValue
+                arraysMonitaryValue += 0.10 * Double(currancy[6])
+                //Index 7 : add 5c * number held to arraysMonitaryValue
+                arraysMonitaryValue += 0.05 * Double(currancy[7])
+                //Index 8 : add 1c * number held to arraysMonitaryValue
+                arraysMonitaryValue += 0.01 * Double(currancy[8])
+                
+                //set this objects value of amountMoney to arraysMonitaryValue
+                self.amountMoney = arraysMonitaryValue
             }
-            
-            //initialize double to hold the monitary value of the array passed in
-            var arraysMonitaryValue : Double
-            
-            //Index 0 : add $50 * number held to arraysMonitaryValue
-            arraysMonitaryValue = 50 * currancy[0]
-            //Index 1 : add $20 * number held to arraysMonitaryValue
-            arraysMonitaryValue += 20 * currancy[1]
-            //Index 2 : add $10 * number held to arraysMonitaryValue
-            arraysMonitaryValue += 10 * currancy[2]
-            //Index 3 : add $5 * number held to arraysMonitaryValue
-            arraysMonitaryValue += 5 * currancy[3]
-            //Index 4 : add $1 * number held to arraysMonitaryValue
-            arraysMonitaryValue += 1 * currancy[4]
-            //Index 5 : add 25c * number held to arraysMonitaryValue
-            arraysMonitaryValue += 0.25 * currancy[5]
-            //Index 6 : add 10c * number held to arraysMonitaryValue
-            arraysMonitaryValue += 0.10 * currancy[6]
-            //Index 7 : add 5c * number held to arraysMonitaryValue
-            arraysMonitaryValue += 0.05 * currancy[7]
-            //Index 8 : add 1c * number held to arraysMonitaryValue
-            arraysMonitaryValue += 0.01 * currancy[8]
-            
-            //set this objects value of amountMoney to arraysMonitaryValue
-            this.amountMoney = arraysMonitaryValue
-            
         }
     }
     
@@ -123,7 +130,7 @@ class Cash {
 
 //Initialize 6 variables of type Cash
 var cashVar1 = Cash(amountMoney : -10)      //random negative value
-var cashVar2 = Cash()         //zero
+var cashVar2 = Cash()                       //zero
 var cashVar3 = Cash(amountMoney : 24.19)    //random number in range 0<x<=100
 var cashVar4 = Cash(amountMoney : 42.40)    //  ||
 var cashVar5 = Cash(amountMoney : 69.76)    //  ||
@@ -146,12 +153,12 @@ var arr5:[Int] = [23, 77, 16, 71, 7, 71, 63, 8, 1]      //  ||
 var arr6:[Int] = [15, 10, 12, 0, 10, 9, 0, 12, 8]       //  ||
 
 //Using setter assign array variables to the 6 cash variables
-cashVar1.amountMoney = arr1
-cashVar2.amountMoney = arr2
-cashVar3.amountMoney = arr3
-cashVar4.amountMoney = arr4
-cashVar5.amountMoney = arr5
-cashVar6.amountMoney = arr6
+cashVar1.currencyAmount = arr1
+cashVar2.currencyAmount = arr2
+cashVar3.currencyAmount = arr3
+cashVar4.currencyAmount = arr4
+cashVar5.currencyAmount = arr5
+cashVar6.currencyAmount = arr6
 
 //print values from getter for 6 variables
 print(cashVar1.amountMoney)
