@@ -8,107 +8,106 @@ class Cash {
     
     func getMoney() -> Array<Int> {
         //returns: the minimum number of US Currancy that equals the amount stored in amountMoney if amount is negative return empty array (error)
-                   //int array of length 9 (starting at index 0)
-                       //index 0 -> # $50 bills
-                       //index 1 -> # $20 bills
-                       //index 2 -> # $10 bills
-                       //index 3 -> # $5  bills
-                       //index 4 -> # $1  bills
-                       //index 5 -> # 25cent coins
-                       //index 6 -> # 10cent coins
-                       //index 7 -> # 5cent  coins
-                       //index 8 -> # 1cent  coins
+        //int array of length 9 (starting at index 0)
+        //index 0 -> # $50 bills
+        //index 1 -> # $20 bills
+        //index 2 -> # $10 bills
+        //index 3 -> # $5  bills
+        //index 4 -> # $1  bills
+        //index 5 -> # 25cent coins
+        //index 6 -> # 10cent coins
+        //index 7 -> # 5cent  coins
+        //index 8 -> # 1cent  coins
                    
-                   //initialize currancy int array to all 0's
-                   var currancy: Array<Int> = Array(repeating: 0, count: 9)
-                   //initialize a local amount of amountMoney we can mess with
-                   var moneyLeft = self.amountMoney
+        //initialize currancy int array to all 0's
+        var currancy: Array<Int> = Array(repeating: 0, count: 9)
+        //initialize a local amount of amountMoney we can mess with
+        var moneyLeft = self.amountMoney
                    
-                   //set values of array if amountMoney is not negative or 0
-                   if !self.amountMoney.isLessThanOrEqualTo(0) {
-                       //$50 bills - set the index 0 and subtract used amount from moneyLeft
-                       while !moneyLeft.isLess(than: 50) {
-                           currancy[0] += 1
-                           moneyLeft -= 50
-                       }
-                       //$20 bills - set index 1 and subtract used amount from moneyLeft
-                       while !moneyLeft.isLess(than: 20) {
-                           currancy[1] += 1
-                           moneyLeft -= 20
-                       }
-                       //$10 bills - set the index 0 and subtract used amount from moneyLeft
-                       while !moneyLeft.isLess(than: 10) {
-                           currancy[2] += 1
-                           moneyLeft -= 10
-                       }
-                       //$5 bills - set index 1 and subtract used amount from moneyLeft
-                       while !moneyLeft.isLess(than: 5) {
-                           currancy[3] += 1
-                           moneyLeft -= 5
-                       }
-                       //$1 bills - set the index 0 and subtract used amount from moneyLeft
-                       while !moneyLeft.isLess(than: 1) {
-                           currancy[4] += 1
-                           moneyLeft -= 1
-                       }
-                       //25c coins - set index 1 and subtract used amount from moneyLeft
-                       while !moneyLeft.isLess(than: 0.25) {
-                           currancy[5] += 1
-                           moneyLeft -= 0.25
-                       }
-                       //10c coins - set the index 0 and subtract used amount from moneyLeft
-                       while !moneyLeft.isLess(than: 0.10) {
-                           currancy[6] += 1
-                           moneyLeft -= 0.10
-                       }
-                       //5c coins - set index 1 and subtract used amount from moneyLeft
-                       while !moneyLeft.isLess(than: 0.05) {
-                           currancy[7] += 1
-                           moneyLeft -= 0.05
-                       }
-                       //1c coins - set the index 0 and subtract used amount from moneyLeft
-                       while !moneyLeft.isLess(than: 0.01) {
-                           currancy[8] += 1
-                           moneyLeft -= 0.01
-                       }
-                   }
+        //set values of array if amountMoney is not negative or 0
+        if !self.amountMoney.isLessThanOrEqualTo(0) {
+            //$50 bills - set the index 0 and subtract used amount from moneyLeft
+            while !moneyLeft.isLess(than: 50) {
+                currancy[0] += 1
+                moneyLeft -= 50
+            }
+            //$20 bills - set index 1 and subtract used amount from moneyLeft
+            while !moneyLeft.isLess(than: 20) {
+                currancy[1] += 1
+                moneyLeft -= 20
+            }
+            //$10 bills - set the index 0 and subtract used amount from moneyLeft
+            while !moneyLeft.isLess(than: 10) {
+                currancy[2] += 1
+                moneyLeft -= 10
+            }
+            //$5 bills - set index 1 and subtract used amount from moneyLeft
+            while !moneyLeft.isLess(than: 5) {
+                currancy[3] += 1
+                moneyLeft -= 5
+            }
+            //$1 bills - set the index 0 and subtract used amount from moneyLeft
+            while !moneyLeft.isLess(than: 1) {
+                currancy[4] += 1
+                moneyLeft -= 1
+            }
+            //25c coins - set index 1 and subtract used amount from moneyLeft
+            while !moneyLeft.isLess(than: 0.25) {
+                currancy[5] += 1
+                moneyLeft -= 0.25
+            }
+            //10c coins - set the index 0 and subtract used amount from moneyLeft
+            while !moneyLeft.isLess(than: 0.10) {
+                currancy[6] += 1
+                moneyLeft -= 0.10
+            }
+            //5c coins - set index 1 and subtract used amount from moneyLeft
+            while !moneyLeft.isLess(than: 0.05) {
+                currancy[7] += 1
+                moneyLeft -= 0.05
+            }
+            //1c coins - set the index 0 and subtract used amount from moneyLeft
+            while !moneyLeft.isLess(than: 0.01) {
+                currancy[8] += 1
+                moneyLeft -= 0.01
+            }
+        }
                    
-                   return currancy
+        return currancy
 
     }
     
     func setMoney(currancy : Array<Int>){
         //takes array of length 9 and converts it to a dollar value and stores the value in amountMoney
-                    //if array length != to 9 amountMoney is set to -1 (Error)
-                    if currancy.count != 9 {
-                        self.amountMoney = -1
-                    } else {
+        //if array length != to 9 amountMoney is set to -1 (Error)
+        if currancy.count != 9 {
+            self.amountMoney = -1
+        } else {
+            //initialize double to hold the monitary value of the array passed in
+            var arraysMonitaryValue : Double
                         
-                        //initialize double to hold the monitary value of the array passed in
-                        var arraysMonitaryValue : Double
+            //Index 0 : add $50 * number held to arraysMonitaryValue
+            arraysMonitaryValue = Double(50 * currancy[0])
+            //Index 1 : add $20 * number held to arraysMonitaryValue
+            arraysMonitaryValue += Double(20 * currancy[1])
+            //Index 2 : add $10 * number held to arraysMonitaryValue
+            arraysMonitaryValue += Double(10 * currancy[2])
+            //Index 3 : add $5 * number held to arraysMonitaryValue
+            arraysMonitaryValue += Double(5 * currancy[3])
+            //Index 4 : add $1 * number held to arraysMonitaryValue
+            arraysMonitaryValue += Double(1 * currancy[4])
+            //Index 5 : add 25c * number held to arraysMonitaryValue
+            arraysMonitaryValue += 0.25 * Double(currancy[5])
+            //Index 6 : add 10c * number held to arraysMonitaryValue
+            arraysMonitaryValue += 0.10 * Double(currancy[6])
+            //Index 7 : add 5c * number held to arraysMonitaryValue
+            arraysMonitaryValue += 0.05 * Double(currancy[7])
+            //Index 8 : add 1c * number held to arraysMonitaryValue
+            arraysMonitaryValue += 0.01 * Double(currancy[8])
                         
-                        //Index 0 : add $50 * number held to arraysMonitaryValue
-                        arraysMonitaryValue = Double(50 * currancy[0])
-                        //Index 1 : add $20 * number held to arraysMonitaryValue
-                        arraysMonitaryValue += Double(20 * currancy[1])
-                        //Index 2 : add $10 * number held to arraysMonitaryValue
-                        arraysMonitaryValue += Double(10 * currancy[2])
-                        //Index 3 : add $5 * number held to arraysMonitaryValue
-                        arraysMonitaryValue += Double(5 * currancy[3])
-                        //Index 4 : add $1 * number held to arraysMonitaryValue
-                        arraysMonitaryValue += Double(1 * currancy[4])
-                        //Index 5 : add 25c * number held to arraysMonitaryValue
-                        arraysMonitaryValue += 0.25 * Double(currancy[5])
-                        //Index 6 : add 10c * number held to arraysMonitaryValue
-                        arraysMonitaryValue += 0.10 * Double(currancy[6])
-                        //Index 7 : add 5c * number held to arraysMonitaryValue
-                        arraysMonitaryValue += 0.05 * Double(currancy[7])
-                        //Index 8 : add 1c * number held to arraysMonitaryValue
-                        arraysMonitaryValue += 0.01 * Double(currancy[8])
-                        
-                        //set this objects value of amountMoney to arraysMonitaryValue
-                        self.amountMoney = arraysMonitaryValue
-                    }
+            //set this objects value of amountMoney to arraysMonitaryValue
+            self.amountMoney = arraysMonitaryValue
+        }
 
     }
     
